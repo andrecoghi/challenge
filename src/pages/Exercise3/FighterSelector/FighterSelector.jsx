@@ -20,7 +20,7 @@ function FighterSelector() {
                     time: (new Date()).toLocaleTimeString()
                 }
             ]);
-        }, 1);
+        }, 1); 
     }, [fighter])
 
     return (
