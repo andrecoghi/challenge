@@ -14,10 +14,16 @@ const instructions = [
     "A solução final não deve apresentar nenhum erro ou warning no console do browser."
 ];
 class Exercise1 extends Component {
-    state = {
-        availableElements: [],
-        selectedElements: []
-    }
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+        this.state = {
+            availableElements: [],
+            selectedElements: []
+        }
+      }
+
+ 
     
     componentWillMount() {
         const getPokemonNumber = pokemonNumber => {
@@ -34,6 +40,15 @@ class Exercise1 extends Component {
             });
             this.setState({ availableElements });
         });
+    }
+
+    handleClick(index) {
+        //use push is faster then concat
+        this.state.selectedElements.push(...this.state.availableElements.splice(index, 1))
+        if(this.state.selectedElements.length > 0){
+            this.setState({ selectedElements: this.state.selectedElements })
+       
+        }
     }
 
     render() {
@@ -57,11 +72,7 @@ class Exercise1 extends Component {
                                             </div>
                                         </td>
                                         <td className={classes.Action}>
-                                            <PokeballIcon onClick={() => {
-                                                this.setState({
-                                                        selectedElements: this.state.availableElements.splice(index, 1).concat(this.state.selectedElements)
-                                                });
-                                            }} />
+                                            <PokeballIcon onClick={this.handleClick.bind(this,index)} />
                                         </td>
                                     </tr>
                                 ))}
@@ -69,7 +80,7 @@ class Exercise1 extends Component {
                         </table>
                     </div>
                     <div className={classes.CaptureContainer}>
-                        {this.state.selectedElements.map((element, index) => (
+                        {this.state.selectedElements.length > 0 && this.state.selectedElements.map((element, index) => (
                             <Card 
                                 key={Math.random()}
                                 number={`#${element.number}`}
