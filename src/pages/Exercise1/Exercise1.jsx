@@ -87,7 +87,7 @@ class Exercise1 extends Component {
                                 name={element.name}
                                 src={getPokemonIconURL(element.number)}
                                 onClick={() => (
-                                    this.setState({ //arr1.push(...arr2)
+                                    this.setState({
                                         availableElements: this.state.selectedElements.splice(index, 1).concat(this.state.availableElements)
                                     })
                                 )}
