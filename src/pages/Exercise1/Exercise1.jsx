@@ -49,6 +49,8 @@ class Exercise1 extends Component {
             this.setState({ selectedElements: this.state.selectedElements })
        
         }
+        console.log('oi')
+        console.log(this.state.selectedElements)
     }
 
     render() {
@@ -61,7 +63,7 @@ class Exercise1 extends Component {
                         <table className={classes.Table}>
                             <tbody>
                                 {this.state.availableElements.map((element, index) => (
-                                    <tr key={Math.random()}>
+                                    <tr key={index}>
                                         <td className={classes.Number}>
                                             <div>{`#${element.number}`}</div>
                                         </td>
@@ -82,7 +84,7 @@ class Exercise1 extends Component {
                     <div className={classes.CaptureContainer}>
                         {this.state.selectedElements.length > 0 && this.state.selectedElements.map((element, index) => (
                             <Card 
-                                key={Math.random()}
+                                key={index}
                                 number={`#${element.number}`}
                                 name={element.name}
                                 src={getPokemonIconURL(element.number)}
